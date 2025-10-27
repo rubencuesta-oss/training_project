@@ -11,7 +11,7 @@ with customer as (
 	        C_MKTSEGMENT as mktsegment,
 	        C_COMMENT as customer_comment
 
-    from PROJECT_DBT.TPCH_SF1.CUSTOMER)
+    from {{ source('TPCH_SF1', 'CUSTOMER') }} )
 
 select *
 from customer

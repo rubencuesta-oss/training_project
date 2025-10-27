@@ -8,7 +8,7 @@ with partsupp as (
 	        PS_SUPPLYCOST as supply_cost,
 	        PS_COMMENT as part_supllier_comment
 
-    from PROJECT_DBT.TPCH_SF1.PARTSUPP)
+    from {{ source('TPCH_SF1', 'PARTSUPP') }})
 
 select *
 from partsupp

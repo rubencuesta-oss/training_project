@@ -6,7 +6,7 @@ with region as (
 	        R_NAME as name,
 	        R_COMMENT as region_comment
 
-    from PROJECT_DBT.TPCH_SF1.REGION)
+    from {{ source('TPCH_SF1', 'REGION') }})
 
 select *
 from region

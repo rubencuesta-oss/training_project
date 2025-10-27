@@ -7,7 +7,7 @@ with nation as (
 	        N_REGIONKEY as region_id,
 	        N_COMMENT as nation_comment
 
-    from PROJECT_DBT.TPCH_SF1.NATION)
+    from {{ source('TPCH_SF1', 'NATION') }})
 
 select *
 from nation

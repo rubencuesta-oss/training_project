@@ -1,4 +1,9 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='order_id'
+    )
+}}
 
 with orders as (
     
@@ -12,7 +17,12 @@ with orders as (
 	        O_SHIPPRIORITY as ship_priority,
 	        O_COMMENT as order_comment
 
-    from PROJECT_DBT.TPCH_SF1.ORDERS)
+    from {{ source('TPCH_SF1', 'ORDERS') }})
 
 select *
 from orders
+{% if is_incremental() %}
+    -- this filter will only be applied on an incremental run
+    where order_date >= (select max(order_date) from {{ this }}) 
+{% endif %}
+order by order_date desc

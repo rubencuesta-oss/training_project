@@ -1,4 +1,9 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='order_id || \'-\' || line_number'
+    )
+}}
 
 with lineitem as (
     
@@ -19,7 +24,12 @@ with lineitem as (
 	        L_SHIPMODE as ship_mode,
 	        L_COMMENT as line_item_comment
 
-    from PROJECT_DBT.TPCH_SF1.LINEITEM)
+    from {{ source('TPCH_SF1', 'LINEITEM') }})
 
 select *
 from lineitem
+{% if is_incremental() %}
+    -- this filter will only be applied on an incremental run
+    where ship_date >= (select max(ship_date) from {{ this }}) 
+{% endif %}
+order by ship_date desc

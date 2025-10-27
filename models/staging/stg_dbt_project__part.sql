@@ -12,7 +12,7 @@ with part as (
 	        P_RETAILPRICE as retail_price,
 	        P_COMMENT as part_comment
 
-    from PROJECT_DBT.TPCH_SF1.PART)
+    from {{ source('TPCH_SF1', 'PART') }})
 
 select *
 from part

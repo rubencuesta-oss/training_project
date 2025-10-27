@@ -10,7 +10,7 @@ with supplier as (
 	            S_ACCTBAL as acctbal,
 	            S_COMMENT as supplier_comment
 
-    from PROJECT_DBT.TPCH_SF1.SUPPLIER)
+    from {{ source('TPCH_SF1', 'SUPPLIER') }})
 
 select *
 from supplier
