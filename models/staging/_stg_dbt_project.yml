@@ -1,0 +1,44 @@
+models:
+  - name: stg_dbt_project__customer
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_dbt_project__lineitem
+  - name: stg_dbt_project__nation
+    columns:
+      - name: nation_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_dbt_project__orders
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_dbt_project__part
+    columns:
+      - name: part_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_dbt_project__partsupp
+  - name: stg_dbt_project__region
+    columns:
+      - name: region_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_dbt_project__supplier
+    columns:
+      - name: supplier_id
+        data_tests:
+          - unique
+          - not_null

@@ -4,9 +4,9 @@ sources:
     schema: TPCH_SF1  
     tables:
       - name: CUSTOMER
-      - name: LINEITEM
+      - name: LINEITEM #No ponemos test de 'freshness' porque las tablas son estaticas (no se cargan datos)
       - name: NATION
-      - name: ORDERS
+      - name: ORDERS #No ponemos test de 'freshness' porque las tablas son estaticas (no se cargan datos)
       - name: PART
       - name: PARTSUPP
       - name: REGION
