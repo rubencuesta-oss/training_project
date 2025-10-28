@@ -4,10 +4,51 @@ sources:
     schema: TPCH_SF1  
     tables:
       - name: CUSTOMER
+        columns:
+          - name: C_CUSTKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
+
       - name: LINEITEM #No ponemos test de 'freshness' porque las tablas son estaticas (no se cargan datos)
       - name: NATION
+        columns:
+          - name: N_NATIONKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
+
       - name: ORDERS #No ponemos test de 'freshness' porque las tablas son estaticas (no se cargan datos)
+        columns:
+          - name: O_ORDERKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
+
       - name: PART
+        columns:
+          - name: P_PARTKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
+
       - name: PARTSUPP
       - name: REGION
+        columns:
+          - name: R_REGIONKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
+
       - name: SUPPLIER
+        columns:
+          - name: S_SUPPKEY
+            description: primary key
+            data_tests:
+              - unique
+              - not_null
