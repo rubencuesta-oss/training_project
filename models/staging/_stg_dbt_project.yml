@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: stg_dbt_project__customer
     columns:
@@ -5,14 +7,67 @@ models:
         data_tests:
           - unique
           - not_null
+      - name: nation_id
+        data_tests:
+          - relationships:
+              field: nation_id
+              to: ref('stg_dbt_project__nation')
 
   - name: stg_dbt_project__lineitem
+    columns:
+      - name: return_flag
+        data_tests:
+          - accepted_values:
+              values:
+                - N
+                - A
+                - R
+      - name: shipin_struct 
+        data_tests:
+          - accepted_values:
+              values:
+                - DELIVER IN PERSON
+                - TAKE BACK RETURN
+                - COLLECT COD
+                - NONE
+      - name: ship_mode
+        data_tests:
+          - accepted_values:
+              values:
+                - RAIL
+                - SHIP
+                - TRUCK
+                - FOB
+                - REG AIR
+                - MAIL
+                - AIR
+      - name: order_id
+        data_tests:
+          - relationships:
+              to: ref('stg_dbt_project__orders')
+              field: order_id
+      - name: part_id
+        data_tests:
+          - relationships:
+              field: part_id
+              to: ref('stg_dbt_project__part')
+      - name: supplier_id
+        data_tests:
+          - relationships:
+              field: supplier_id
+              to: ref('stg_dbt_project__supplier')
+
   - name: stg_dbt_project__nation
     columns:
       - name: nation_id
         data_tests:
           - unique
           - not_null
+      - name: region_id
+        data_tests:
+          - relationships:
+              field: region_id
+              to: ref('stg_dbt_project__region')
 
   - name: stg_dbt_project__orders
     columns:
@@ -20,6 +75,27 @@ models:
         data_tests:
           - unique
           - not_null
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              values:
+                - O
+                - P
+                - F
+      - name: order_priority
+        data_tests:
+          - accepted_values:
+              values:
+                - 1-URGENT
+                - 2-HIGH
+                - 3-MEDIUM
+                - 4-NOT SPECIFIED
+                - 5-LOW
+      - name: customer_id
+        data_tests:
+          - relationships:
+              field: customer_id
+              to: ref('stg_dbt_project__customer')
 
   - name: stg_dbt_project__part
     columns:
@@ -29,6 +105,13 @@ models:
           - not_null
 
   - name: stg_dbt_project__partsupp
+    columns: 
+      - name: supplier_id
+        data_tests:
+          - relationships:
+              field: supplier_id
+              to: ref('stg_dbt_project__supplier')
+
   - name: stg_dbt_project__region
     columns:
       - name: region_id
@@ -42,3 +125,8 @@ models:
         data_tests:
           - unique
           - not_null
+      - name: nation_id
+        data_tests:
+          - relationships:
+              field: nation_id
+              to: ref('stg_dbt_project__nation')
