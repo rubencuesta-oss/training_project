@@ -2,18 +2,22 @@ version: 2
 
 models:
   - name: stg_dbt_project__customer
+    description: one customer per row (info)
     columns:
       - name: customer_id
+        description: primary key
         data_tests:
           - unique
           - not_null
       - name: nation_id
+        description: foreign key
         data_tests:
           - relationships:
               field: nation_id
               to: ref('stg_dbt_project__nation')
 
   - name: stg_dbt_project__lineitem
+    description: each order splited in different line numbers
     columns:
       - name: return_flag
         data_tests:
@@ -70,6 +74,7 @@ models:
               to: ref('stg_dbt_project__region')
 
   - name: stg_dbt_project__orders
+    description: one order per row
     columns:
       - name: order_id
         data_tests:
