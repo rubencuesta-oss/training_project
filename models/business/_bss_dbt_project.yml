@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: dim_orders
+    description: orders indicating which customer have ordered
+  - name: dim_products
+    description: products indicating which supplier is taking over them

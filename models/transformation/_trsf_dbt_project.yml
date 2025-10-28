@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: trsf_dbt_project_customer_location
+    description: one customer per row indicating their location
+  - name: trsf_dbt_project_supplier_location
+    description: one supplier per row indicating theri location
+  - name: trsf_dbt_project_product
+    description: each part of the product properly described and linked with its supplier
