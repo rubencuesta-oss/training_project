@@ -41,5 +41,8 @@ models:
     staging:
       +materialized: table
 
-    marts:
+    transformation:
+      +materialized: view
+    
+    business:
       +materialized: table

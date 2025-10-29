@@ -5,3 +5,5 @@ models:
     description: orders indicating which customer have ordered
   - name: dim_products
     description: products indicating which supplier is taking over them
+  - name: fct_business_lineitem
+    description: table ready for business analysis
