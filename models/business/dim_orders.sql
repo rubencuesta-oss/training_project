@@ -2,7 +2,7 @@
 
 with orders as (
     select *
-    from {{ ref('stg_dbt_project__orders') }}
+    from {{ ref('trsf_dbt_project_orders') }}
 ),
 
 customer as (
